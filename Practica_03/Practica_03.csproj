@@ -16,9 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Models\ModelsBD\" />
-    <Folder Include="Models\Interfaces\" />
-    <Folder Include="Models\ResponseData\" />
-    <Folder Include="Models\Services\" />
   </ItemGroup>
 
 </Project>
