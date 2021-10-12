@@ -11,12 +11,51 @@ namespace Practica_03.Models.Services
     {
         public Usuario Create(Usuario usuario)
         {
-            throw new NotImplementedException();
+            Usuario resul = null;
+            string error = "";
+            try
+            {
+                using (var db = new BD_Practica03Context())
+                {
+                    if(usuario != null)
+                    {
+                        resul = new Usuario();
+                        resul.Nombre = usuario.Nombre;
+                        resul.Apellidos = usuario.Apellidos;
+                        resul.Telefono = usuario.Telefono;
+                        resul.Direccion = usuario.Direccion;
+
+                        db.Usuarios.Add(resul);
+                        db.SaveChanges();
+                    }
+                    else { throw new Exception("Error. Datos Vacios."); }
+                }
+            }
+            catch(Exception ex)
+            {
+                error = ex.Message;
+            }
+            return resul;
         }
 
         public Usuario Get(int id)
         {
-            throw new NotImplementedException();
+            Usuario resul = null;
+            string error = "";
+            try
+            {
+                using (var db = new BD_Practica03Context())
+                {
+                    var obj = db.Usuarios.Where(u => u.Id == id).FirstOrDefault();
+                    if (obj != null) { resul = obj; }
+                    else { throw new Exception("Error. Producto no Existe."); }
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            return resul;
         }
     }
 }
