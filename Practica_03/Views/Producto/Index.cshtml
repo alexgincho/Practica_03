@@ -1,5 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "_Layout";
 }
+@model Practica_03.Models.ModelsBD.Producto;
+@{ 
+    List<Practica_03.Models.ModelsBD.Producto> productos = new List<Practica_03.Models.ModelsBD.Producto>();
+    productos = ViewBag.Productos;
+}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Listado de Productos en Venta</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-danger" asp-area="" asp-controller="Producto" asp-action="Create"> Registrar un Producto para vender</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                @foreach (var prod in productos)
+                {
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="@prod.Imagen" class="card-img-top" height="250px">
+                            <div class="card-body">
+                                <h3 class="card-title">@prod.Nombre</h3>
+                                <h4 class="card-subtitle">s/ @prod.Precio</h4>
+                                <h5 class="card-subtitle">Cant. @prod.Cantidad</h5>
+                                <p class="card-text">@prod.Descripcion</p>
+                                <a href="#" class="btn btn-primary">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
