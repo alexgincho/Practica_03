@@ -56,6 +56,8 @@ namespace Practica_03.Models.ModelsBD
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
+                entity.Property(e => e.FechaCreacion).HasColumnType("date");
+
                 entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
 
                 entity.Property(e => e.Imagen)

@@ -18,6 +18,7 @@ namespace Practica_03.Models.ModelsBD
         public string Descripcion { get; set; }
         public decimal? Precio { get; set; }
         public int? Cantidad { get; set; }
+        public DateTime? FechaCreacion { get; set; }
         public int? IdCategoria { get; set; }
 
         public virtual Categorium IdCategoriaNavigation { get; set; }
