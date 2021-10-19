@@ -18,7 +18,7 @@ namespace Practica_03.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.Productos = _sP.GetAll();
+            ViewBag.Productos = _sP.GetProductoFechas(DateTime.Now); // Llamamos a la funcion 
             return View();
         }
         public IActionResult Create()

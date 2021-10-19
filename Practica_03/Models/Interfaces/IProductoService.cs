@@ -11,5 +11,6 @@ namespace Practica_03.Models.Interfaces
         public Producto Create(Producto producto);
         public Producto Get(int id);
         public List<Producto> GetAll();
+        public List<Producto> GetProductoFechas(DateTime fFechaActual);
     }
 }

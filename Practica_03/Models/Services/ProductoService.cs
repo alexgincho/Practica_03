@@ -26,6 +26,7 @@ namespace Practica_03.Models.Services
                         result.Precio = producto.Precio;
                         result.Cantidad = producto.Cantidad;
                         result.IdCategoria = producto.IdCategoria;
+                        result.FechaCreacion = producto.FechaCreacion;
 
                         db.Productos.Add(result);
                         db.SaveChanges();
@@ -70,6 +71,28 @@ namespace Practica_03.Models.Services
                 {
                     var lst = db.Productos.ToList();
                     if(lst.Count > 0) { result = lst; }
+                    else { throw new Exception("Error. No hay Productos Registrados"); }
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            return result;
+        }
+
+        public List<Producto> GetProductoFechas(DateTime fFechaActual)
+        {
+            List<Producto> result = null;
+            string error = "";
+            try
+            {
+                using (var db = new BD_Practica03Context())
+                {
+                    DateTime FechaAnterior = Convert.ToDateTime(fFechaActual);
+                    FechaAnterior = FechaAnterior.AddDays(-5); // restamos 5 dias a la fecha actual
+                    var lst = db.Productos.Where(p => p.FechaCreacion >= FechaAnterior && p.FechaCreacion <= fFechaActual).ToList();
+                    if (lst.Count > 0) { result = lst; }
                     else { throw new Exception("Error. No hay Productos Registrados"); }
                 }
             }
